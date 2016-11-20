@@ -1,0 +1,13 @@
+# no exits
+ExitPolicy reject *:*
+
+# open a socks port for other containers to use
+# TODO: limit this
+SocksPort 0.0.0.0:9050
+
+# tor-arm settings
+ControlPort 9051
+CookieAuthentication 1
+DisableDebuggerAttachment 0
+
+# TODO: hidden service

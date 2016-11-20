@@ -1,0 +1,11 @@
+#!/bin/sh
+# apparently `./bin/zcash-cli listaddresses` doesn't work so this is an
+# alternative from https://github.com/zcash/zcash/issues/1540
+
+set -e
+
+# run from inside the application's HOME directory
+DIR="$(cd "$(dirname "$0")" && pwd -P)"
+cd "$DIR/.."
+
+exec ./bin/compose exec mainnet zcash-cli listreceivedbyaddress 0 true
