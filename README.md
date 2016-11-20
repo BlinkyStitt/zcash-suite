@@ -94,9 +94,13 @@ docker pull bwstitt/library-composable:latest \
 # Todo
 
  * [ ] helper to customize config
- * [ ] expose ports
  * [ ] easily switch between mainnet and testnet and regtest
- * [ ] use Tor
+ * [ ] improve documentation
+ * [ ] opt-in to serving a Tor Hidden Service
+
+```bash
+grep -R "TODO:" .
+```
 
 
 # Authors
