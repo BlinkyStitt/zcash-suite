@@ -13,4 +13,6 @@ TOR_PROXY_IP=$(getent hosts tor | cut -f1 -d' ')
 sed -i -e "/^proxy=/ s/=.*/=${TOR_PROXY_IP}:9050/" ~/.zcash/zcash.conf
 sed -i -e "/^onion=/ s/=.*/=${TOR_PROXY_IP}:9050/" ~/.zcash/zcash.conf
 
+zcash-fetch-params || exit 1
+
 exec zcashd -printtoconsole "$@"
