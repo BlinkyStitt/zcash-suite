@@ -2,13 +2,16 @@ version: '2'
 services:
   tor:
     image: bwstitt/tor
+    restart: always
     expose:
       - "9050"
     volumes:
       - "./config/torrc:/etc/tor/torrc:ro"
+      - "tor:/var/lib/tor"
 
   mainnet:
     image: bwstitt/zcash
+    restart: always
     entrypoint: ["/bin/sh"]
     command: ["/zcashd-entrypoint.sh"]
     # use expose instead of ports to only listen on the Tor network
@@ -17,3 +20,10 @@ services:
     volumes:
       - "./config/mainnet.conf:/config/zcash.conf:ro"
       - "./zcash/zcashd-entrypoint.sh:/zcashd-entrypoint.sh:ro"
+      - "mainnet:/home/zcash/.zcash"
+      - "params:/home/zcash/.zcash-params"
+
+volumes:
+  mainnet: {}
+  params: {}
+  tor: {}

@@ -18,7 +18,9 @@ docker pull bwstitt/zcash-suite:latest \
 && docker run \
     --rm -it \
     -e "TARGET=$ZCASH_HOME" \
-    -v "$ZCASH_HOME:$ZCASH_HOME" \
+    -e "PUID=$(id -u)" \
+    -e "PGID=$(id -g)" \
+    -v "$ZCASH_HOME:/target" \
     bwstitt/zcash-suite:latest \
 && $ZCASH_HOME/bin/run
 ```
@@ -88,6 +90,25 @@ docker pull bwstitt/library-composable:latest \
     -v "$ZCASH_HOME:$ZCASH_HOME" \
     bwstitt/zcash-suite:latest \
 && $ZCASH_HOME/bin/run
+```
+
+
+# Migrating volume data
+
+```bash
+docker run \
+    --rm \
+    --volumes-from zcashsuite_mainnet_1 \
+    -it \
+    -v ~/.zcash-params:/migrate/zcash-params \
+    -v ~/.zcash:/migrate/zcash \
+    bwstitt/library-alpine:3.4 \
+    sh
+```
+
+```bash
+cp /migrate/zcash-params/* ~/.zcash-params/
+cp /migrate/zcash/* ~/.zcash/
 ```
 
 
