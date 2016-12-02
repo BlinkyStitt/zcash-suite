@@ -38,7 +38,7 @@ docker pull bwstitt/zcash-suite:latest \
     $ZCASH_HOME/bin/zcash-cli getpeerinfo
     $ZCASH_HOME/bin/zcash-list-addresses
     ```
-9. Back up your wallet!
+9. Back up your wallet! (TODO: this is out-dated)
 
     ```bash
     cp ./data/mainnet/wallet.dat /backups/somewhere/safe
@@ -118,6 +118,7 @@ cp /migrate/zcash/* ~/.zcash/
  * [ ] easily switch between mainnet and testnet and regtest
  * [ ] improve documentation
  * [ ] opt-in to serving a Tor Hidden Service
+ * [ ] fix the "backup" command to support named volumes
 
 ```bash
 grep -R "TODO:" .
